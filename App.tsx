@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import { SafeAreaView, StatusBar } from 'react-native'
+import { NotesProvider } from './src/context/Notescontext';
+import AppRoutes from './src/routes/AppRoutes';
+
+function AppContext({ children }: any) {
+  return (
+    <NotesProvider>
+      {children}
+    </NotesProvider>
+  )
+}
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <SafeAreaView style={{ flex: 1 }}>
+      <StatusBar />
+      <AppContext>
+        <AppRoutes />
+      </AppContext>
+    </SafeAreaView>
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
