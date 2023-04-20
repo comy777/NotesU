@@ -6,4 +6,5 @@ module.exports = {
   extra: {
     apiUrl: process.env.API_URL,
   },
+  userInterfaceStyle: "automatic"
 };
