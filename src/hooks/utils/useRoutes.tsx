@@ -4,7 +4,6 @@ import { getDataStorage, saveTokenStorage } from "../../utils/storage"
 import { useContextApp } from "../context/useContextApp"
 import { getUserApi, refreshTokenApi } from "../../api/auth"
 import { useUtils } from "./useUtils"
-import * as SystemUI from 'expo-system-ui';
 
 export const useRoutes = () => {
   const { setTokenContext, darkTheme, setTheme } = useContextApp()
@@ -12,12 +11,7 @@ export const useRoutes = () => {
   const themeSystem = useColorScheme()
   const { hasInternet } = useUtils()
 
-  const getThemeSystem = async () => {
-    console.log(themeSystem)
-    if(themeSystem === 'dark' && !darkTheme) setTheme()
-    const colors = await SystemUI.getBackgroundColorAsync()
-    console.log(colors)
-  }
+  const getThemeSystem = async () => (themeSystem === 'dark' && !darkTheme) && setTheme()
   
   const refreshToken = async () => {
     const token = await getDataStorage('token')

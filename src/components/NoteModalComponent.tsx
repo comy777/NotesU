@@ -4,7 +4,7 @@ import { NoteModalProps } from '../interfaces/components'
 import { useStyles } from '../hooks/utils/useStyles'
 
 export default function NoteModal({note, delteNote, editNote}: NoteModalProps) {
-  const { styles } = useStyles()
+  const { styles, colors } = useStyles()
 
   return (
     <View>
@@ -13,8 +13,8 @@ export default function NoteModal({note, delteNote, editNote}: NoteModalProps) {
         <Text style={{marginTop: 15}} numberOfLines={20}>{note.body}</Text>
         <View style={styles.pab}>
           <View style={styles.contentEvenly}>
-            <Icon name='trash-outline' size={36} onPress={() => delteNote(note._id)}/>
-            <Icon name='pencil-outline' size={36} onPress={editNote}/>
+            <Icon name='trash-outline' size={36} onPress={() => delteNote(note._id)} color={colors.accent}/>
+            <Icon name='pencil-outline' size={36} onPress={editNote} color={colors.accent}/>
           </View>
         </View>
       </View>

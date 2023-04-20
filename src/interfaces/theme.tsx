@@ -8,6 +8,7 @@ export interface CustomTheme {
     border: string,
     notification: string,
     modal: string,
-    pickerItem: string
+    pickerItem: string,
+    accent: string
   }
 }

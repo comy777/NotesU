@@ -10,7 +10,7 @@ export const useStyles = () => {
     //Header
     headerContainer: {
       height: 70,
-      backgroundColor: 'teal'
+      backgroundColor: colors.primary
     },
     header: {
       flex: 1,
@@ -82,8 +82,7 @@ export const useStyles = () => {
       right: 0,
       bottom: 0,
       left: 0,
-      top: 0,
-      backgroundColor: 'rgba(0, 0, 0, .4)'
+      top: 0
     },
     fab: {
       height: 65,
@@ -91,7 +90,7 @@ export const useStyles = () => {
       borderRadius: 32.5,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'teal'
+      backgroundColor: colors.accent
     },
     lottieContainer: {
       height: 50,
@@ -140,7 +139,7 @@ export const useStyles = () => {
     btnContainer: { 
       height: 50, 
       width: 250, 
-      backgroundColor: 'teal', 
+      backgroundColor: colors.accent, 
       borderRadius: 15, 
       justifyContent: 'center', 
       alignItems: 'center',
@@ -253,7 +252,10 @@ export const useStyles = () => {
     //Account settings
     centerContent: { justifyContent: 'center', alignItems: 'center' },
     profilImage: { height: 250, width: 250, borderRadius: 125, resizeMode: 'center', marginVertical: 25 },
-    iconsContainer: { padding: 5, borderRadius: 15, borderWidth: 1, borderColor: 'teal', marginHorizontal: 5 }
+    iconsContainer: { padding: 5, borderRadius: 15, borderWidth: 1, borderColor: 'teal', marginHorizontal: 5 },
+
+    //Icons
+    iconStyle: { color: colors.accent }
 
   })
 
