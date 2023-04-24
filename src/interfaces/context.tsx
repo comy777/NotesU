@@ -1,4 +1,4 @@
-import { NoteFiles, categories } from "../types/notes"
+import { NoteFiles } from "../types/notes"
 import { Category, NoteResponse, UserData } from "./api" 
 import { Category as CategoryStorage, FileContext } from "./components"
 
@@ -6,15 +6,18 @@ export interface UiStateProps extends NotesStateProps {
   darkTheme: boolean
   modal: boolean
   colorPicker: string | undefined
+  welcome: boolean
   setTheme: () => void
   setModal: (value: boolean) => void
   setColorPicker: (color?: string, modal?: boolean) => void
+  setWelcome: () => void
 }
 
 export interface UiState {
   darkTheme: boolean
   modal: boolean
   colorPicker: string | undefined
+  welcome: boolean
 }
 
 export interface NotesStateProps {

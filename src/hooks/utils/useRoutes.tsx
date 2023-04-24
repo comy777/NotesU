@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import { useColorScheme } from 'react-native'
-import { getDataStorage, saveTokenStorage } from "../../utils/storage"
+import { getDataStorage, restoreStorage, saveTokenStorage } from "../../utils/storage"
 import { useContextApp } from "../context/useContextApp"
 import { getUserApi, refreshTokenApi } from "../../api/auth"
 import { useUtils } from "./useUtils"
 
 export const useRoutes = () => {
-  const { setTokenContext, darkTheme, setTheme } = useContextApp()
+  const { setTokenContext, darkTheme, setTheme, welcome, setWelcome } = useContextApp()
   const [loading, setLoading] = useState(true)
   const themeSystem = useColorScheme()
   const { hasInternet } = useUtils()
@@ -20,6 +20,7 @@ export const useRoutes = () => {
       return
     }
     const tokenResp = await refreshTokenApi(token)
+    if(!tokenResp) await restoreStorage('token')
     if(tokenResp){
       const user = await getUserApi()
       setTokenContext(tokenResp, user)
@@ -27,18 +28,22 @@ export const useRoutes = () => {
     }
     setLoading(false)
   }
+
+  const validateWelcome = async () => {
+    const resp = await getDataStorage('welcome')
+    if(resp) setWelcome()
+    await getThemeSystem()
+    await refreshToken()
+  }
   
   useEffect(() => {
-    (async() => {
-      await getThemeSystem()
-      await refreshToken()
-    })()
+    (async() => await validateWelcome())()
   }, [])
 
   useEffect(() => {
     getThemeSystem()
   }, [themeSystem])
   
-  return { darkTheme, loading, refreshToken }
+  return { darkTheme, loading, welcome, refreshToken }
 
 }

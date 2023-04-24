@@ -210,6 +210,25 @@ export const useStyles = () => {
       marginBottom: 25
     },
     search: { justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 25 },
+    searchCategories: { 
+      padding: 15,
+      backgroundColor: colors.accent,
+      height: 235,
+      borderRadius: 15
+    },
+
+    //Checkbox
+    checkbox: {
+      margin: 8,
+      borderColor: colors.primary
+    },
+    section: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    paragraph: {
+      fontSize: 15,
+    },
 
     //Picker
     pickerItem: { width: 250, height: 60, marginTop: 15, backgroundColor: colors.pickerItem },
@@ -254,8 +273,12 @@ export const useStyles = () => {
     profilImage: { height: 250, width: 250, borderRadius: 125, resizeMode: 'center', marginVertical: 25 },
     iconsContainer: { padding: 5, borderRadius: 15, borderWidth: 1, borderColor: 'teal', marginHorizontal: 5 },
 
-    //Icons
-    iconStyle: { color: colors.accent }
+    //Welcome screen
+    centerFlex: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+    contetntWelcome: { width, flex: 1, justifyContent: 'center', alignItems: 'center' },
+    btnWelcome: { position: 'absolute', bottom: 75 },
+    titleWelcome: { fontSize: 38, fontWeight: 'bold', color: colors.text },
+    bodyWelcome: { fontSize: 24, color: colors.text, marginTop: 15, marginHorizontal: 25 }
 
   })
 

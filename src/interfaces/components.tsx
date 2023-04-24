@@ -1,7 +1,7 @@
 import Icon from '@expo/vector-icons/Ionicons'
 import { StyleProp, TextStyle, ViewStyle } from 'react-native'
-import { NoteFiles, NoteForm } from '../types/notes'
-import { FileResponse, NoteResponse } from './api'
+import { NoteFiles } from '../types/notes'
+import { FileResponse, NoteResponse, Category as CategoryApi } from './api'
 
 export interface FabProps {
   icon: keyof typeof Icon.glyphMap
@@ -165,4 +165,16 @@ export interface AccountState {
   editUser: boolean
   image: string
   loading: boolean
+}
+
+export interface CheckBoxComponentProps {
+  category: CategoryApi
+  handleChangeCategory: (value: string, insert: boolean) => void
+}
+
+export interface DataWelcome {
+  background: string
+  title: string
+  body: string
+  index: number
 }

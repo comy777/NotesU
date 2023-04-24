@@ -12,18 +12,20 @@ import { useRoutes } from '../hooks/utils/useRoutes'
 import LoadingComponent from '../components/LoadingComponent'
 import { VerifyAccount } from '../screens/auth/VerifyAccount'
 import Account from '../screens/auth/Account'
+import WelcomeScreen from '../screens/WelcomeScreen'
 
 const Stack = createStackNavigator()
 
 export default function AppRoutes(){
-  const { darkTheme, loading } = useRoutes()
+  const { darkTheme, loading, welcome } = useRoutes()
 
-  if(loading) return <LoadingComponent color='teal'/>
+  if(loading && !welcome) return <LoadingComponent color='teal'/>
 
   return (
     <NavigationContainer theme={ darkTheme ?  DarkTheme : LightTheme }>
-      <Header/>
+      { welcome ? <Header/> : null }
       <Stack.Navigator screenOptions={{headerShown: false}}>
+        { welcome ? null : <Stack.Screen name='welcome screen' component={WelcomeScreen}/> }
         <Stack.Screen name='home screen' component={HomeScreen}/>
         <Stack.Screen name='note screen' component={NoteScreen}/>
         <Stack.Screen name='files screen' component={FilesScreen}/>

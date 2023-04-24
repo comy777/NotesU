@@ -4,7 +4,7 @@ import { DataSaveStorage, notesTypes } from "../types/storage"
 
 export const getDataStorage = async (type: notesTypes): Promise<any> => {
   try {
-    //await AsyncStorage.removeItem('notes')
+    //await AsyncStorage.removeItem('welcome')
     const dataJson = await AsyncStorage.getItem(type)
     const defaultResp = type === 'notes' ? [] : undefined
     return dataJson ? JSON.parse(dataJson) : defaultResp
@@ -45,4 +45,12 @@ export const saveTokenStorage = async (token: string) => {
 
 export const deleteNotesStoarge = async (data: string[]) => {
   await saveDataStorage('delete notes', { data })
+}
+
+export const saveWelcome = async () => {
+  try {
+    await AsyncStorage.setItem('welcome', 'true')
+  } catch (error) {
+    console.log(error)
+  }
 }

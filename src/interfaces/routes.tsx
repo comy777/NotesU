@@ -7,6 +7,7 @@ declare global {
 }
 
 export type RootStack = {
+  'welcome screen': undefined
   'home screen': undefined
   'note screen': undefined
   'files screen': undefined

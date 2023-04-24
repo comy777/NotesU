@@ -14,8 +14,8 @@ const useImageScreen = () => {
   const thumpRef: LegacyRef<FlatList> = useRef(null);
   const topRef: LegacyRef<FlatList> = useRef(null);
   const timmerImages = useRef(false);
-  const {fadeAnim, fadeIn, fadeOut} = useAnimation();
-  const {width, styles} = useStyles();
+  const { fadeAnim, fadeIn, fadeOut } = useAnimation();
+  const { width, styles, colors } = useStyles();
 
   const getIndex = () => {
     files.mediaData.forEach((item, index) => {
@@ -70,7 +70,8 @@ const useImageScreen = () => {
     onPress,
     setActiveIndex,
     styles,
-    files
+    files,
+    colors
   };
 };
 

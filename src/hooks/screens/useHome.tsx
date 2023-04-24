@@ -98,6 +98,8 @@ export const useHome = () => {
   }
 
   const getCategories = async () => {
+    const internet = await hasInternet()
+    if(!token || !internet) return
     let categories: Category[] = []
     const resp = await getCategoriesApi()
     if(!resp) return

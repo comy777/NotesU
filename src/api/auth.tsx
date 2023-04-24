@@ -38,7 +38,7 @@ export const authApiGet = async (url: string): Promise<any> => {
 }
 
 export const refreshTokenApi = async (value: string): Promise<string | undefined> => {
-  const resp = await authApiGet(`/auth/refresh-token/${value}`)
+  const resp = await authApiGet(`/auth/refresh-token`)
   if(!resp) return
   return resp.token
 }

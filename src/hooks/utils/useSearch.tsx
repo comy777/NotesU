@@ -6,9 +6,11 @@ import { useStyles } from "./useStyles"
 
 export const useSearch = (time = 500) => {
   const { search, handleChangeText, resetForm } = useForm({ search: '' })
-  const { notes, saveNotesContext } = useContextApp()
+  const { notes, categories, saveNotesContext } = useContextApp()
   const [data, setData] = useState<NoteResponse[]>(notes)
   const { styles } = useStyles()
+  const [showCategories, setShowCategories] = useState(false)
+  const [categoriesSearch, setCategoriesSearch] = useState<string[]>([])
 
   const searchTerm = () => {
     const valueSearch = search.toLowerCase().trim()
@@ -23,6 +25,19 @@ export const useSearch = (time = 500) => {
 
   const resetSearch = () => resetForm({ search: ''})
 
+  const handleShowCategories = (value: boolean) => {
+    if(value && categories.length === 0) return
+    setShowCategories(value)
+  }
+
+  const handleCategory = (category: string, insert: boolean) => {
+    const resp = insert ? [...categoriesSearch, category] :  categoriesSearch.filter((value) => value !== category)
+    const notes = data.filter((note) => resp.includes(note.categorie))
+    setCategoriesSearch(resp)
+    notes.length === 0 ? saveNotesContext(data) : saveNotesContext(notes)
+    setShowCategories(false)
+  }
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       if(!search) { 
@@ -36,5 +51,5 @@ export const useSearch = (time = 500) => {
     };
   }, [search]);
 
-  return { search, handleChangeText, styles, resetSearch }
+  return { search, showCategories, styles, categories, resetSearch, handleChangeText, handleShowCategories, handleCategory}
 }

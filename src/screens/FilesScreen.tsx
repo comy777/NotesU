@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { View, FlatList, Image, TouchableOpacity, Animated } from 'react-native';
 import ImageZoom from '../components/ImageZoomComponent';
 import useImageScreen from '../hooks/utils/useImage';
@@ -22,30 +21,26 @@ export default function FilesScreen() {
   } = useImageScreen();
   
   const FileImage = ({uri}: Props) => {
-    return useMemo(() => {
-      return(
-        <View
-            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <ImageZoom uri={uri} />
-        </View>
-      )
-    }, [uri])
+    return(
+      <View
+          style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <ImageZoom uri={uri} />
+      </View>
+    )
   }
 
   const FilesImages = ({uri, index}: Props) => {
-    return useMemo(() => {
-      return(
-        <TouchableOpacity
-          activeOpacity={0.7}
-          disabled={disabled}
-          onPress={() => setActiveIndex(index)}>
-          <Image
-            source={{uri}}
-            style={styles.imageBottomScreen}
-          />
-        </TouchableOpacity>
-      )
-    }, [uri])
+    return(
+      <TouchableOpacity
+        activeOpacity={0.7}
+        disabled={disabled}
+        onPress={() => setActiveIndex(index)}>
+        <Image
+          source={{uri}}
+          style={styles.imageBottomScreen}
+        />
+      </TouchableOpacity>
+    )
   }
 
   return (
