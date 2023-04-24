@@ -7,7 +7,7 @@ import { getDataStorage } from '../utils/storage'
 //Server https://notesu-server-ojl6.onrender.com
 //Constants.expoConfig?.extra?.apiUrl
 
-const baseURL = 'http://192.168.100.19:5050'
+const baseURL = Constants.expoConfig?.extra?.apiUrl
 
 export const apiNotes = axios.create({ baseURL })
 
