@@ -7,13 +7,13 @@ import NoteComponent from '../components/NoteComponent'
 import SearchComponent from '../components/SearchComponent'
 
 export default function HomeScreen() {
-  const { loading, notes, styles, select, handleNavigateNote, handleShowNote, handleSelect } = useHome()
+  const { loading, notes, styles, select, handleNavigateNote, handleShowNote, handleSelect, hideCategories } = useHome()
   
   if(loading) return <LoadingComponent color='teal'/>
 
   return (
     <View style={styles.container}>
-      <SearchComponent/>
+      { notes.length > 0 ? <SearchComponent/> : null }
       <FlashList 
         data={notes}
         keyExtractor={(item, i) => i.toString()}
@@ -21,6 +21,7 @@ export default function HomeScreen() {
         estimatedItemSize={200}
         numColumns={2}
         showsVerticalScrollIndicator={false}
+        onTouchStart={() => hideCategories()}
       />
       <FabComponent icon={select ? 'trash-outline' : 'add'} onPress={handleNavigateNote}/>
     </View>
