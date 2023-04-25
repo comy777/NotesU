@@ -5,7 +5,7 @@ import { showToast } from '../../utils/alert'
 import { saveCategoriesApi } from '../../api/categories'
 
 export const useUtils = () => {
-  const { categories, pickerValue, token, setPickerValue } = useContextApp()
+  const { categories, pickerValue, token } = useContextApp()
 
   const hasInternet = async () => {
     const resp = await NetInfo.fetch()
@@ -51,6 +51,11 @@ export const useUtils = () => {
       newCategory = resp._id
     }
     if (bandera) return
+    if(categories.length > 0) {
+      categories.forEach((value) => {
+        if(value.categorie === newCategory) newCategory = value._id
+      })
+    }
     return newCategory
   }
 

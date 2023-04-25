@@ -9,7 +9,7 @@ export default function PickerComponent({onPress}: PickerProps) {
   const { handlePickerValue, pickerValue, other, handleOther, categories } = useComponents()
   const { styles } = useStyles()
   const { category } = pickerValue
-
+  
   return (
     <View style={{ ...styles.fabAbsolute, zIndex: 9999999 }}>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

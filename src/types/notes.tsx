@@ -2,7 +2,7 @@ import { FileResponse, NoteResponse, UserData, Category } from "../interfaces/ap
 import { Category as CategoryStorage, FileContext } from "../interfaces/components"
 
 export type NotesActions = { type: 'set notes', payload: { notes: [] } }
-  | { type: 'save notes', payload: { notes: NoteResponse[] } }
+  | { type: 'save notes', payload: { notes: NoteResponse[], categories?: Category[] } }
   | { type: 'set note', payload: { note: NoteResponse | undefined } }
   | { type: 'set files', payload: { files: NoteFiles, id?: string }}
   | { type: 'set file', payload: { file: FileContext | undefined } }

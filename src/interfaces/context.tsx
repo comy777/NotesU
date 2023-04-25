@@ -31,7 +31,7 @@ export interface NotesStateProps {
   pickerValue: CategoryStorage
   user: UserData | undefined
   categories: Category[]
-  saveNotesContext: (notes: NoteResponse[]) => void
+  saveNotesContext: (notes: NoteResponse[], categories?: Category[]) => void
   setNoteContext: (note: NoteResponse | undefined) => void
   setFilesContext: (files: NoteFiles, id?: string) => void
   setFileContext: (file: FileContext | undefined) => void

@@ -4,7 +4,8 @@ import { NotesActions } from "../types/notes";
 export const notesReducer = (state: NotesState, action: NotesActions): NotesState => {
   switch (action.type) {
     case 'save notes':
-      return { ...state, notes: action.payload.notes }
+      const { notes: notesSave, categories: categoriesSave } = action.payload
+      return { ...state, notes: notesSave, categories: categoriesSave ? categoriesSave : state.categories }
     case 'set note':
       const { note } = action.payload
       return { ...state, note, deletedFiles: [] }
@@ -35,7 +36,8 @@ export const notesReducer = (state: NotesState, action: NotesActions): NotesStat
         pickerValue: valuePicker,
       }
     case 'set categories':
-      return { ...state, categories: action.payload.categories }
+      const { categories } = action.payload
+      return { ...state, categories, pickerValue: { category: categories[0]._id, other: '' } }
     default:
       return state
   }

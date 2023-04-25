@@ -8,7 +8,7 @@ import { NoteFiles } from "../../types/notes"
 const useReducerNotes = () => {
   const [state, dispatch] = useReducer(notesReducer, notesStateInit)
   
-  const saveNotesContext = (notes: NoteResponse[]) => dispatch({type: 'save notes', payload: {notes}})
+  const saveNotesContext = (notes: NoteResponse[], categories?: Category[]) => dispatch({type: 'save notes', payload: { notes, categories }})
   const setNoteContext = (note: NoteResponse | undefined) => dispatch({type: 'set note', payload: {note}})
   const setFilesContext = (files: NoteFiles, id?: string) => dispatch({type: 'set files', payload: {files, id}})
   const setFileContext = (file: FileContext | undefined) => dispatch({type: 'set file', payload: {file}}) 

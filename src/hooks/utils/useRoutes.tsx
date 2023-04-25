@@ -20,7 +20,7 @@ export const useRoutes = () => {
       return
     }
     const tokenResp = await refreshTokenApi(token)
-    if(!tokenResp) await restoreStorage('token')
+     if(!tokenResp) await restoreStorage('token')
     if(tokenResp){
       const user = await getUserApi()
       setTokenContext(tokenResp, user)

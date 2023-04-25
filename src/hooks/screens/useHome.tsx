@@ -24,7 +24,6 @@ export const useHome = () => {
     setNoteContext, 
     setColorPicker,
     restoreContext,
-    setCategories,
     setTokenContext
   } = useContextApp()
   const { getNotesDb, deleteNoteDb } = useNotesApi()
@@ -83,20 +82,6 @@ export const useHome = () => {
     saveNotesContext(newNotes)
   }
 
-  const getNotesStorage = async () => {
-    if(!state.loading) setState({ ...state, loading: true})
-    const data = await getDataStorage('notes')
-    const deleteNotes = await getDataStorage('delete notes')
-    if(deleteNotes && deleteNotes.length > 0) await deleteNotes(deleteNotes)
-    const internet = await hasInternet()
-    const validate = (token && internet) ? true : false
-    const resp = validate ? await getNotesDb(data) : data
-    const newNotes = modifyNotes(resp)
-    saveNotesContext(newNotes)
-    await saveNotesStorage(resp.length === data.length ? resp : [])
-    setState({ ...state, loading: false })
-  }
-
   const getCategories = async () => {
     const internet = await hasInternet()
     if(!token || !internet) return
@@ -108,7 +93,22 @@ export const useHome = () => {
       const saveCategorie = await saveCategoriesApi('Note')
       if(saveCategorie) categories.push(saveCategorie)
     }
-    setCategories(categories)
+    return categories
+  }
+
+  const getNotesStorage = async () => {
+    if(!state.loading) setState({ ...state, loading: true})
+    const data = await getDataStorage('notes')
+    const deleteNotes = await getDataStorage('delete notes')
+    if(deleteNotes && deleteNotes.length > 0) await deleteNotes(deleteNotes)
+    const internet = await hasInternet()
+    const validate = (token && internet) ? true : false
+    const resp = validate ? await getNotesDb(data) : data
+    const newNotes = modifyNotes(resp)
+    const categories =   await getCategories()
+    saveNotesContext(newNotes, categories)
+    await saveNotesStorage(resp.length === data.length ? resp : [])
+    setState({ ...state, loading: false })
   }
 
   const refreshAccount = async () => {
@@ -118,20 +118,12 @@ export const useHome = () => {
   }
 
   useEffect(() => {
-    (async () => {
-      await getCategories()
-      await getNotesStorage()
-    })()
-  }, [])
-
-  useEffect(() => {
     if(token) {
       (async() => await refreshAccount())
       ()
     }
   }, [token])
-  
-  
+
   return { ...state, notes, styles, handleNavigateNote, handleShowNote, handleSelect }
   
 }

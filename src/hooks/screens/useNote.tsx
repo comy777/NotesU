@@ -68,7 +68,7 @@ export const useNote = () => {
       return
     }
     let data: NoteResponse | undefined = undefined
-    if (token) data = await saveNoteDb({ title, body, background: colorPicker ? colorPicker : 'white', categorie }, newFiles)
+    if (token) data = await saveNoteDb({ title, body, background: colorPicker ? colorPicker : colors.primary, categorie }, newFiles)
     if (!data) data = getNote({ title, body, colorPicker, files: newFiles, categorie })
     const newNotes = data ? [{ ...data, select: false }, ...notes] : notes
     await saveDataAndReset(newNotes, 'Save note', data)
@@ -76,7 +76,7 @@ export const useNote = () => {
 
   const handleEditNote = async (id: string, newFiles: NoteFiles, categorie: string) => {
     let data: any
-    if (token) data = await saveNoteDb({ title, body, background: colorPicker ? colorPicker : 'white', categorie }, newFiles, id, deletedFiles)
+    if (token) data = await saveNoteDb({ title, body, background: colorPicker ? colorPicker : colors.primary, categorie }, newFiles, id, deletedFiles)
     if (!data) data = getNote({ title, body, colorPicker, files: newFiles, categorie, id })
     const newNotes = data ? notes.map((note) => note._id === id ? { ...data, select: false } : note) : notes
     await saveDataAndReset(newNotes, 'Edit note', data)
@@ -89,7 +89,6 @@ export const useNote = () => {
     resetFiles(note.files)
     setState({ ...state, id: note._id })
     setNoteContext(undefined)
-    setPickerValue({ category: note.categorie, other: '' })
   }
 
   const handleShowColors = () => setState({ ...state, options: false, showColors: true })
