@@ -21,7 +21,7 @@ export default function ModalComponent(){
   return (
     <Modal animationType="slide" transparent={true} visible={modal} onRequestClose={handleHideModal}>
       <View style={styles.centeredView}>
-        <View style={{...styles.modalView, backgroundColor: note ? colorPicker : colors.modal}}>
+        <View style={{...styles.modalView, backgroundColor: note ? colorPicker : colors.primary}}>
           { 
             note  ? <NoteModal note={note} delteNote={handleConfirmDeleteNote} 
                                editNote={() => handleNavigate('note screen')}/> 
