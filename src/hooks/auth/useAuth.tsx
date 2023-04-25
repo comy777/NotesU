@@ -1,19 +1,20 @@
 import { useNavigation } from "@react-navigation/native"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { authApi } from "../../api/auth"
 import { AuthPropsState, FormAuth } from "../../interfaces/components"
 import { saveTokenStorage } from "../../utils/storage"
 import { validateAuthForm } from "../../utils/validate"
 import { useContextApp } from "../context/useContextApp"
 import { useForm } from "../utils/useForm"
-import { RootStack } from "../../interfaces/routes"
+import { useStyles } from "../utils/useStyles"
 
 export const useAuth = () => {
   const form: FormAuth = { email: '', password: '', username: '', repeatPassword: '' }
   const [state, setState] = useState<AuthPropsState>({ loading: false, show: true })
   const { email, password, username, repeatPassword, handleChangeText, resetForm } = useForm(form)
   const navigation = useNavigation()
-  const { setTokenContext } = useContextApp()
+  const { colors } = useStyles()
+  const { setTokenContext, setColorPicker } = useContextApp()
   
   const handleShow = () => setState({ ...state, show: !state.show })
 
@@ -46,6 +47,10 @@ export const useAuth = () => {
     if(!email) return
     await authApi('/auth/verify-email', { email })
   }
+
+  useEffect(() => {
+    setColorPicker(colors.background)
+  }, [])
   
   return { 
     ...state, 
