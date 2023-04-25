@@ -7,10 +7,12 @@ export interface UiStateProps extends NotesStateProps {
   modal: boolean
   colorPicker: string | undefined
   welcome: boolean
+  searchCategories: boolean
   setTheme: () => void
   setModal: (value: boolean) => void
   setColorPicker: (color?: string, modal?: boolean) => void
   setWelcome: () => void
+  setSearchCategories: (value: boolean) => void
 }
 
 export interface UiState {
@@ -18,6 +20,7 @@ export interface UiState {
   modal: boolean
   colorPicker: string | undefined
   welcome: boolean
+  searchCategories: boolean
 }
 
 export interface NotesStateProps {

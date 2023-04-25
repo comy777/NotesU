@@ -24,7 +24,8 @@ export const useHome = () => {
     setNoteContext, 
     setColorPicker,
     restoreContext,
-    setTokenContext
+    setTokenContext,
+    setSearchCategories
   } = useContextApp()
   const { getNotesDb, deleteNoteDb } = useNotesApi()
   const { hasInternet } = useUtils()
@@ -89,10 +90,6 @@ export const useHome = () => {
     const resp = await getCategoriesApi()
     if(!resp) return
     categories = resp
-    if(resp.length === 0) {
-      const saveCategorie = await saveCategoriesApi('Note')
-      if(saveCategorie) categories.push(saveCategorie)
-    }
     return categories
   }
 
@@ -105,7 +102,7 @@ export const useHome = () => {
     const validate = (token && internet) ? true : false
     const resp = validate ? await getNotesDb(data) : data
     const newNotes = modifyNotes(resp)
-    const categories =   await getCategories()
+    const categories = await getCategories()
     saveNotesContext(newNotes, categories)
     await saveNotesStorage(resp.length === data.length ? resp : [])
     setState({ ...state, loading: false })
@@ -121,11 +118,13 @@ export const useHome = () => {
     await getNotesStorage()
   }
 
+  const hideCategories = () => setSearchCategories(false)
+
   useEffect(() => {
     (async() => await refreshAccount())
     ()
   }, [token])
 
-  return { ...state, notes, styles, handleNavigateNote, handleShowNote, handleSelect }
+  return { ...state, notes, styles, handleNavigateNote, handleShowNote, handleSelect, hideCategories }
   
 }

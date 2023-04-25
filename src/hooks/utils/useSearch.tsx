@@ -3,14 +3,15 @@ import { NoteResponse } from "../../interfaces/api"
 import { useContextApp } from "../context/useContextApp"
 import { useForm } from "./useForm"
 import { useStyles } from "./useStyles"
+import useAnimation from "./useAnimation"
 
 export const useSearch = (time = 500) => {
   const { search, handleChangeText, resetForm } = useForm({ search: '' })
-  const { notes, categories, saveNotesContext } = useContextApp()
+  const { notes, categories, searchCategories, saveNotesContext, setSearchCategories } = useContextApp()
   const [data, setData] = useState<NoteResponse[]>(notes)
-  const { styles } = useStyles()
-  const [showCategories, setShowCategories] = useState(false)
+  const { styles, colors } = useStyles()
   const [categoriesSearch, setCategoriesSearch] = useState<string[]>([])
+  const { fadeAnim, fadeIn, fadeOut } = useAnimation()
 
   const searchTerm = () => {
     const valueSearch = search.toLowerCase().trim()
@@ -27,7 +28,8 @@ export const useSearch = (time = 500) => {
 
   const handleShowCategories = (value: boolean) => {
     if(value && categories.length === 0) return
-    setShowCategories(value)
+    fadeIn()
+    setSearchCategories(value)
   }
 
   const handleCategory = (category: string, insert: boolean) => {
@@ -35,7 +37,6 @@ export const useSearch = (time = 500) => {
     const notes = data.filter((note) => resp.includes(note.categorie))
     setCategoriesSearch(resp)
     notes.length === 0 ? saveNotesContext(data) : saveNotesContext(notes)
-    setShowCategories(false)
   }
 
   useEffect(() => {
@@ -51,5 +52,16 @@ export const useSearch = (time = 500) => {
     };
   }, [search]);
 
-  return { search, showCategories, styles, categories, resetSearch, handleChangeText, handleShowCategories, handleCategory}
+  return { 
+    search, 
+    searchCategories, 
+    styles, 
+    categories, 
+    colors, 
+    resetSearch, 
+    handleChangeText, 
+    handleShowCategories, 
+    handleCategory,
+    fadeAnim 
+  }
 }

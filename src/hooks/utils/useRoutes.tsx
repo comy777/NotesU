@@ -15,7 +15,6 @@ export const useRoutes = () => {
   
   const refreshToken = async () => {
     const token = await getDataStorage('token')
-    console.log(token)
     if(!token || !hasInternet()) {
       setLoading(false)
       return

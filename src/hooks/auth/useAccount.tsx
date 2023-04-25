@@ -10,8 +10,8 @@ import { UserData } from "../../interfaces/api"
 import { showToast } from "../../utils/alert"
 
 export const useAccount = () => {
-  const { user, files, setTokenContext, token } = useContextApp()
-  const { styles } = useStyles()
+  const { user, files, setTokenContext, token, setColorPicker } = useContextApp()
+  const { styles, colors } = useStyles()
   const { username, email, handleChangeText, resetForm } = useForm({ username: '', email: '' })
   const [state, setState] = useState<AccountState>({ editUser: false, image: '', loading: false })
   const { handleFile, resetFiles } = useFiles()
@@ -38,6 +38,7 @@ export const useAccount = () => {
 
   useEffect(() => {
     if(!user) return
+    setColorPicker(colors.background)
     if(user.profile_image) setState({ ...state, image: user.profile_image })
     resetForm({ username: user.name, email: user.email })
   }, [])

@@ -27,7 +27,7 @@ export function NotesProvider({children}: any){
     restoreContext,
     setCategories
   } = useReducerNotes()
-  const { state, setTheme, setModal, setColorPicker, setWelcome } = useUi()
+  const { state, setTheme, setModal, setColorPicker, setWelcome, setSearchCategories } = useUi()
   
   return(
     <NotesContext.Provider value={{ 
@@ -54,7 +54,8 @@ export function NotesProvider({children}: any){
       setPickerValue,
       restoreContext,
       setCategories, 
-      setWelcome
+      setWelcome,
+      setSearchCategories
     }}>
       { children }
     </NotesContext.Provider>

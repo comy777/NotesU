@@ -1,11 +1,11 @@
-import { View, TextInput, FlatList } from 'react-native'
+import { View, TextInput, FlatList, Text, Animated } from 'react-native'
 import Icon from '@expo/vector-icons/Ionicons'
 import { useSearch } from '../hooks/utils/useSearch'
 import CheckBoxComponent from './CheckBoxComponent'
 
 export default function SearchComponent() {
   const { 
-    search, styles, showCategories, categories, handleChangeText, resetSearch, handleShowCategories, handleCategory
+    search, styles, searchCategories, categories, colors, fadeAnim, handleChangeText, resetSearch, handleShowCategories, handleCategory
   } = useSearch()
 
   return (
@@ -23,20 +23,21 @@ export default function SearchComponent() {
           <Icon 
             name={search ? 'close-outline' : 'search-outline'} size={24} 
             onPress={search ? resetSearch : () => {}} 
-            color={styles.textColor.color}
+            color={colors.primary}
           />
         </View>
       </View>
       {
-        (!search && showCategories) ? (
-          <View style={styles.searchCategories}>
+        (!search && searchCategories) ? (
+          <Animated.View style={{...styles.searchCategories, opacity: fadeAnim}}>
+            <Text>Categories</Text>
             <FlatList 
               data={categories}
               keyExtractor={(item) => item._id}
               renderItem={({ item }) => <CheckBoxComponent category={item} handleChangeCategory={handleCategory} />}
               showsVerticalScrollIndicator={false}
             />
-          </View>
+          </Animated.View>
         ) : null
       }
     </View>

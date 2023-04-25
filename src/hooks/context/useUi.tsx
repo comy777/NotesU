@@ -9,7 +9,8 @@ export const useUi = () => {
     darkTheme: false,
     modal: false,
     colorPicker: colors.background,
-    welcome: false
+    welcome: false,
+    searchCategories: false
   })
 
   const setTheme = () => setState({ ...state, darkTheme: !state.darkTheme })
@@ -19,9 +20,11 @@ export const useUi = () => {
   const setWelcome = () => setState({ ...state, welcome: true })
 
   const setColorPicker = (colorPicker?: string, modal?: boolean) => {
-    console.log(colorPicker, modal)
     modal ? setState({ ...state, colorPicker, modal: modal }) : setState({ ...state, colorPicker })
   }
 
-  return { state, setTheme, setModal, setColorPicker, setWelcome }
+  const setSearchCategories = (value: boolean) => setState({ ...state, searchCategories: value })
+
+  return { state, setTheme, setModal, setColorPicker, setWelcome, setSearchCategories }
+  
 }
