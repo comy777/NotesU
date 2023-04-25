@@ -20,7 +20,7 @@ export default function WelcomeScreen() {
             <View style={styles.btnWelcome}>
               {
                 index === 2
-                  ? <BtnComponent title='Start' style={styles.btnContainer} textStyle={styles.btnText} onPress={handleWelcome} />
+                  ? <BtnComponent title='Start' style={styles.btnContainer} textStyle={styles.btnText} onPress={() => handleWelcome()} />
                   : <TouchableOpacity onPress={() => setActiveIndex(index + 1)} activeOpacity={.7}>
                     <Lottie source={nextIcon} autoPlay loop style={{ height: 250, width: 250 }} />
                   </TouchableOpacity>
