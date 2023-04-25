@@ -213,7 +213,6 @@ export const useStyles = () => {
     searchCategories: { 
       padding: 15,
       backgroundColor: colors.accent,
-      height: 235,
       borderRadius: 15
     },
 
@@ -257,7 +256,7 @@ export const useStyles = () => {
       left: 15,
       position: 'absolute',
       borderRadius: 90,
-      zIndex: 10000
+      zIndex: 10000,
     },
     animatedTop: {
       top: 12,
@@ -265,7 +264,7 @@ export const useStyles = () => {
       position: 'absolute',
       borderRadius: 90,
       zIndex: 10000,
-      paddingHorizontal: 5
+      paddingHorizontal: 5,
     },
 
     //Account settings

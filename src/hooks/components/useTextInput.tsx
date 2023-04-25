@@ -61,7 +61,6 @@ export const useTextInput = (value: string) => {
     onChangeText(value)
   }, [value])
   
-
   return {
     show,
     value,

@@ -19,6 +19,7 @@ export const useUi = () => {
   const setWelcome = () => setState({ ...state, welcome: true })
 
   const setColorPicker = (colorPicker?: string, modal?: boolean) => {
+    console.log(colorPicker, modal)
     modal ? setState({ ...state, colorPicker, modal: modal }) : setState({ ...state, colorPicker })
   }
 

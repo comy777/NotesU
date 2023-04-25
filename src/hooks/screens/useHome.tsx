@@ -112,16 +112,18 @@ export const useHome = () => {
   }
 
   const refreshAccount = async () => {
+    if(!token) {
+      setState({ ...state, loading: false })
+      return
+    }
     const user = await getUserApi()
     setTokenContext(token, user)
     await getNotesStorage()
   }
 
   useEffect(() => {
-    if(token) {
-      (async() => await refreshAccount())
-      ()
-    }
+    (async() => await refreshAccount())
+    ()
   }, [token])
 
   return { ...state, notes, styles, handleNavigateNote, handleShowNote, handleSelect }

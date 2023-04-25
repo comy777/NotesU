@@ -15,12 +15,13 @@ export const useRoutes = () => {
   
   const refreshToken = async () => {
     const token = await getDataStorage('token')
+    console.log(token)
     if(!token || !hasInternet()) {
       setLoading(false)
       return
     }
     const tokenResp = await refreshTokenApi(token)
-     if(!tokenResp) await restoreStorage('token')
+    if(!tokenResp) await restoreStorage('token')
     if(tokenResp){
       const user = await getUserApi()
       setTokenContext(tokenResp, user)
