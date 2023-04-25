@@ -13,6 +13,6 @@ export const apiNotes = axios.create({ baseURL })
 
 apiNotes.interceptors.request.use( async (config) => {
   const token = await getDataStorage('token')
-  if(token) config.headers['Authorization'] = `Bearer ${token}`
+  if(token) config.headers['authorization'] = `Bearer ${token}`
   return config
 })
