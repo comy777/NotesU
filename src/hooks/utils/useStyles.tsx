@@ -47,7 +47,7 @@ export const useStyles = () => {
     },
     modalView: {
       margin: 20,
-      backgroundColor: colors.modal,
+      backgroundColor: colors.primary,
       borderRadius: 20,
       padding: 35,
       alignItems: 'center',
@@ -203,8 +203,8 @@ export const useStyles = () => {
     searchContainer: {
       height: 60, 
       width: '100%', 
-      borderWidth: .4, 
-      borderColor: 'gray', 
+      borderWidth: 1, 
+      borderColor: colors.primary, 
       borderRadius: 25, 
       justifyContent:'center',
       marginBottom: 25
@@ -230,7 +230,7 @@ export const useStyles = () => {
     },
 
     //Picker
-    pickerItem: { width: 250, height: 60, marginTop: 15, backgroundColor: colors.pickerItem },
+    pickerItem: { width: 250, height: 60, marginTop: 15, backgroundColor: colors.background },
 
     //Input float
     containerInputFloat: {
@@ -238,7 +238,7 @@ export const useStyles = () => {
       paddingTop: 5,
       paddingHorizontal: 10,
       borderWidth: 1,
-      borderColor: '#bdbdbd',
+      borderColor: colors.primary,
       borderRadius: 4,
       width: '100%',
       alignSelf: 'center'
