@@ -23,8 +23,7 @@ export default function ModalComponent(){
       <View style={styles.centeredView}>
         <View style={{...styles.modalView, backgroundColor: note ? colorPicker : colors.primary}}>
           { 
-            note  ? <NoteModal note={note} delteNote={handleConfirmDeleteNote} 
-                               editNote={() => handleNavigate('note screen')}/> 
+            note  ? <NoteModal note={note} delteNote={handleConfirmDeleteNote} editNote={() => handleNavigate('note screen')}/> 
             : file ? 
               <FilePreviewComponent 
                 url={file.file.url} 

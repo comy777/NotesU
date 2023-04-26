@@ -10,29 +10,29 @@ export default function SettingsComponent() {
   return (
     <View style={styles.settings}>
       <View style={styles.iconsBetween}>
-        <Text style={styles.title}>{token ? 'Logout' : 'Sign in'}</Text>
+        <Text style={{...styles.title, color: colors.background}}>{token ? 'Logout' : 'Sign in'}</Text>
         <Icon
           name={token ? 'log-in-outline' : 'log-in-outline'}
           size={40}
-          onPress={handleAuth}
-          color={colors.text}
+          onPress={() => handleAuth()}
+          color={colors.background}
         />
       </View>
       <View style={styles.iconsBetween}>
-        <Text style={styles.title}>Theme</Text>
+        <Text style={{...styles.title, color: colors.background}}>Theme</Text>
         <Switch
           trackColor={{ false: '#767577', true: '#767577' }}
           thumbColor={darkTheme ? 'white' : '#f4f3f4'}
           ios_backgroundColor="#3e3e3e"
-          onValueChange={handleTheme}
+          onValueChange={() => handleTheme()}
           value={darkTheme}
         />
       </View>
       {
         user && (
           <View style={styles.iconsBetween}>
-            <Text style={styles.title}>Account</Text>
-            <Icon name='person-circle' size={40} onPress={() => handleNavigate('account screen')} color={colors.text} />
+            <Text style={{...styles.title, color: colors.background}}>Account</Text>
+            <Icon name='person-circle' size={40} onPress={() => handleNavigate('account screen')} color={colors.background} />
           </View>
         )
       }
